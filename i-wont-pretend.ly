@@ -1,6 +1,15 @@
+\version "2.24.4"
+
 \header {
   title = "I Won't Pretend"
   composer = "mulmeyun"
+}
+
+diatonicScale = \relative {
+  c' d e f gis a b
+}
+harmonicMinorScale = \relative {
+  cis dis e fis gis a bis
 }
 
 themePartOne = {
@@ -31,7 +40,9 @@ counterThemePartOne = {
 }
 
 counterThemePartTwo = {
-    gis2.
+  gis4 a cis |
+  e8. dis cis8 |
+  a'8. e fis8 gis4 |
 }
 
 \score {
@@ -41,11 +52,9 @@ counterThemePartTwo = {
     <<
       {
         \themePartTwo
-          \transpose e b {
-          \relative c' {
-            \themePartOne
-          }
-        }
+	\modalTranspose a dis' \harmonicMinorScale \relative c'' {
+	  \themePartOne
+	}
       }
 
       \new Staff {
@@ -53,7 +62,7 @@ counterThemePartTwo = {
         \clef "bass" 
         \relative c {
           \counterThemePartOne
-                  \counterThemePartTwo
+          \counterThemePartTwo
         }
       }
     >>
